@@ -27,7 +27,7 @@ function PostContent(props) {
 			if (node.children[0].type === "image") {
 				const image = node.children[0];
 				return (
-					<div className={classes.imae}>
+					<div className={classes.image}>
 						<Image
 							src={`/image/posts/${post.slug}/${image.url}`}
 							alt={image.alt}

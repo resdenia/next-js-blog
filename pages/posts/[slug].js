@@ -24,10 +24,10 @@ export function getStaticPaths() {
 	//predefine all slugs
 	const postFilenames = getPostsFiles();
 
-	const slugs = postFilenames.map((fileName) => filename.replace(/\.md$/, ""));
+	const slugs = postFilenames.map((fileName) => fileName.replace(/\.md$/, ""));
 
 	return {
-		paths: slug.map((slug) => ({ params: { slug: slug } })),
+		paths: slugs.map((slug) => ({ params: { slug: slug } })),
 		fallback: false,
 	};
 }
