@@ -1,3 +1,5 @@
+import MainNavigations from "./MainNavigation";
+
 function Layout(props) {
 	return (
 		<>
