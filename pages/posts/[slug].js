@@ -3,7 +3,16 @@ import { getPostData, getPostsFiles } from "../../lib/posts-util";
 
 function SinglePostPage(props) {
 	const { post } = props;
-	return <PostContent post={post} />;
+
+	return (
+		<>
+			<Head>
+				<title>{props.post.title}</title>
+				<meta name="description" content={props.post.excerpt} />
+			</Head>
+			<PostContent post={post} />
+		</>
+	);
 }
 
 export function getStaticProps(context) {

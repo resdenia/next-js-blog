@@ -12,7 +12,7 @@ function PostContent(props) {
 	const imagePath = `/images/post/${post.slug}/ ${post.image}`;
 
 	const customRenderers = {
-		image(image) {
+		img(image) {
 			return (
 				<Image
 					src={`/image/posts/${post.slug}/${image.src}`}
@@ -22,14 +22,14 @@ function PostContent(props) {
 				/>
 			);
 		},
-		paragraph(paragraph) {
+		p(paragraph) {
 			const { node } = paragraph;
-			if (node.children[0].type === "image") {
+			if (node.children[0].tagName === "img") {
 				const image = node.children[0];
 				return (
 					<div className={classes.image}>
 						<Image
-							src={`/image/posts/${post.slug}/${image.url}`}
+							src={`/image/posts/${post.slug}/${image.properties.url}`}
 							alt={image.alt}
 							width={600}
 							height={300}
@@ -40,12 +40,13 @@ function PostContent(props) {
 			return <p>{paragraph.children}</p>;
 		},
 		code(code) {
-			const { language, value } = code;
+			const { className, children } = code;
+			const language = className.split("-")[1];
 			return (
 				<SyntaxHighlighter
 					style={atomDark}
 					language={language}
-					children={value}
+					children={children}
 				/>
 			);
 		},
@@ -54,7 +55,7 @@ function PostContent(props) {
 	return (
 		<article className={classes.content}>
 			<PostHeader title={post.title} image={imagePath} />
-			<ReactMarkdown renderers={customRenderers}> {post.content}</ReactMarkdown>
+			<ReactMarkdown components={customRenderers}>{post.content}</ReactMarkdown>
 		</article>
 	);
 }
