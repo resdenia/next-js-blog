@@ -1,5 +1,5 @@
 import ContactForm from "../../components/contact/ContactForm";
-import head from "next/head";
+import Head from "next/head";
 
 function ContactPage() {
 	return (
